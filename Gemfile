@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+gem 'rest-client'
+gem 'rspec'
+gem 'yard'
+gem 'gemcutter'
+gem 'pry'
+gem 'pry-doc'
+gem 'vcr'
+gem 'webmock',  '~> 1.15.2'
+gem 'simplecov'
+gem 'redcarpet'
+gem 'rake'
