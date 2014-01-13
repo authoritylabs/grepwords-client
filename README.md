@@ -26,11 +26,9 @@ Wrapper gem for Grepwords API requests.
     keywords = %w[apple ipad iphone]
     data     = GrepwordsClient::KeywordTool.lookup(keywords)
 
-    # Returns an array of hashes with CPC, CPM, and monthly data for given keywords
-
-    keyword_data = Hash[data]
-    keywords_with_data = keyword_data.keys
+    # Returns an array of hashes with CPC, CPM, and monthly data for given
 
 ## Todo
 
-1. Add aditional endpoints (credit balance and related queries)
+1. Create response class to avoid keeping track of what keywores were sent to Grepwords vs what actually came back with data.
+2. Add aditional endpoints (credit balance and related queries)
