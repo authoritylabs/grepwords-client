@@ -9,20 +9,20 @@ describe GrepwordsClient::KeywordTool do
   describe 'setup keywords' do
 
     it 'takes an array of keywords and makes newline separated string' do
-      keywords = GrepwordsClient::KeywordTool.setup_keywords(['one','two','three'])
+      keywords = GrepwordsClient::KeywordTool.encode_keywords(['one','two','three'])
       keywords.should be_an_instance_of(String)
       keywords.should eql "one|two|three"
     end
 
     it 'takes a string of keywords and sets ivar' do
       terms = "my fancy keyword\nwith another keyword"
-      keywords = GrepwordsClient::KeywordTool.setup_keywords(terms)
+      keywords = GrepwordsClient::KeywordTool.encode_keywords(terms)
       keywords.should be_an_instance_of(String)
       keywords.should eql keywords
     end
 
     it 'converts keyword spaces to a plus' do
-      keywords = GrepwordsClient::KeywordTool.setup_keywords(['baseball cards', 'football cards', 'sports+cards'])
+      keywords = GrepwordsClient::KeywordTool.encode_keywords(['baseball cards', 'football cards', 'sports+cards'])
       keywords.should be_an_instance_of(String)
       keywords.should eql "baseball+cards|football+cards|sports+cards"
     end
@@ -30,7 +30,7 @@ describe GrepwordsClient::KeywordTool do
     it 'sets max keyword length to 3950' do
       terms = []
       1.upto(4000) { |i| terms << "keyword #{i}" }
-      keywords = GrepwordsClient::KeywordTool.setup_keywords(terms)
+      keywords = GrepwordsClient::KeywordTool.encode_keywords(terms)
       keywords.length.should eql 3950
     end
 
