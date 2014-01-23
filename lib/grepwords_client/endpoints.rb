@@ -40,11 +40,11 @@ module GrepwordsClient
 
     def self.lookup(keywords)
       keywords_string = encode_keywords(keywords)
-      path          = '/lookup'
-      query         = "?apikey=#{config.apikey}&q=#{keywords_string}"
-      uri           = URI.encode(config.host + path + query)
-      resp          = RestClient.get(uri, {})
-      data          = JSON.parse(resp.body)
+      path  = '/lookup'
+      query = "?apikey=#{config.apikey}&q=#{keywords_string}"
+      uri   = URI.encode(config.host + path + query)
+      resp  = RestClient.get(uri, {})
+      data  = JSON.parse(resp.body)
 
       grepwords_data = {}
       grepwords_by_keyword = {}
@@ -56,10 +56,10 @@ module GrepwordsClient
       end
 
       keywords.each do |keyword|
-        grepwords_by_keyword[keyword] = grepwords_data[keyword] || nil
+        grepwords_by_keyword[keyword] = grepwords_data[keyword]
       end
 
-      return grepwords_by_keyword
+      grepwords_by_keyword
     rescue JSON::ParserError
       raise KeywordToolError.new('lookup', 'Bad response from Grepwords when trying to lookup keyword data.')
     end
