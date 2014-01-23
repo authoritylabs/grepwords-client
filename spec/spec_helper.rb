@@ -14,12 +14,11 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
-
-  config.extend VCR::RSpec::Macros
   config.include GrepwordsClientHelpers
 end
 
 VCR.configure do |config|
+  config.configure_rspec_metadata!
   config.hook_into                :webmock
   config.cassette_library_dir     = 'spec/support'
   config.ignore_localhost         = true
