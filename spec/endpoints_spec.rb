@@ -44,14 +44,11 @@ describe GrepwordsClient::Endpoints do
 
       subject(:response) { GrepwordsClient::Endpoints.lookup(keywords) }
 
-      it { expect(response).to be_an_instance_of Hash }
+      it { should be_an_instance_of Hash }
+      it { should have_key 'apple' }
+      it { should have_key 'ipad' }
 
-      it 'returns a key for each keyword' do
-        expect(response).to have_key 'apple'
-        expect(response).to have_key 'ipad'
-      end
-
-      it 'returns correct keyword data' do
+      it 'returns correct properties' do
         %w(cpc cmp gms lms m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12).each do |property|
           expect(response['apple']).to include property
           expect(response['ipad']).to include property
@@ -64,12 +61,9 @@ describe GrepwordsClient::Endpoints do
 
       subject(:response) { GrepwordsClient::Endpoints.lookup(bad_keywords) }
 
-      it { expect(response).to be_an_instance_of Hash }
-
-      it 'returns a key for each keyword' do
-        expect(response).to have_key '|'
-        expect(response).to have_key '\n'
-      end
+      it { should be_an_instance_of Hash }
+      it { should have_key '|' }
+      it { should have_key '\n' }
 
       it 'returns nil values' do
         expect(response['|']).to be nil

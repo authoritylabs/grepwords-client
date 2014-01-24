@@ -11,7 +11,7 @@ module GrepwordsClient
     # Keyword Lookup API call. Takes a list of keywords, separated by a pipe symbol, and returns
     # a json payload of the keywords and their CPC, CPM, and monthly data.
     #
-    # @return [Array] 
+    # @return [Array]
     # @raise  [KeywordToolError] If error is returned in the response body from Grepwords
     # @raise  [KeywordToolError] If bad JSON response from Grepwords
     # @example Example Response
@@ -50,27 +50,28 @@ module GrepwordsClient
 
     private
 
-    ##
-    #
-    # @return [GrepwordsClient::Config]
+    class << self
+      ##
+      #
+      # @return [GrepwordsClient::Config]
 
-    def self.config
-      GrepwordsClient.config
-    end
+      def config
+        GrepwordsClient.config
+      end
 
-    ##
-    #
-    # Setup keywords for API calls.
-    #
-    # @param keywords  [Array[String], String] - Defaults to an empty array. Can be an array of keywords or a string of keywords seperated by a pipe symbol "|"
-    # @return       [Array] of keyword keywords
+      ##
+      #
+      # Setup keywords for API calls.
+      #
+      # @param keywords  [Array[String], String] - Defaults to an empty array. Can be an array of keywords or a string of keywords seperated by a pipe symbol "|"
+      # @return       [Array] of keyword keywords
 
-    def self.encode_keywords(keywords = [])
-      keywords = keywords.is_a?(Array) ? keywords.join('|') : keywords.to_s
-      keywords = keywords.gsub(/\s/,'+')
-      keywords[0..3949]
+      def encode_keywords(keywords = [])
+        keywords = keywords.is_a?(Array) ? keywords.join('|') : keywords.to_s
+        keywords = keywords.gsub(/\s/,'+')
+        keywords[0..3949]
+      end
     end
 
   end
-
 end
