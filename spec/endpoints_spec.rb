@@ -40,13 +40,11 @@ describe GrepwordsClient::Endpoints do
 
     before { set_config }
 
-    context 'successfully', vcr: { cassette_name: 'keyword_tool/lookup/successfully/valid', record: :none } do
+    context 'valid keywords', vcr: { cassette_name: 'keyword_tool/lookup/successfully/valid', record: :none } do
 
       subject(:response) { GrepwordsClient::Endpoints.lookup(keywords) }
 
-      it 'returns a hash of keywords' do
-        expect(response).to be_an_instance_of Hash
-      end
+      it { expect(response).to be_an_instance_of Hash }
 
       it 'returns a key for each keyword' do
         expect(response).to have_key 'apple'
@@ -62,12 +60,20 @@ describe GrepwordsClient::Endpoints do
 
     end
 
-    context 'unsuccessfully', vcr: { cassette_name: 'keyword_tool/lookup/unsuccessfully/with_error', record: :none } do
+    context 'invalid keywords', vcr: { cassette_name: 'keyword_tool/lookup/unsuccessfully/with_error', record: :none } do
 
       subject(:response) { GrepwordsClient::Endpoints.lookup(bad_keywords) }
 
-      it 'raises keyword tool error with error message' do
-        expect(response).to raise_error(GrepwordsClient::KeywordToolError, /Bad response from Grepwords when trying to lookup keyword data./i)
+      it { expect(response).to be_an_instance_of Hash }
+
+      it 'returns a key for each keyword' do
+        expect(response).to have_key '|'
+        expect(response).to have_key '\n'
+      end
+
+      it 'returns nil values' do
+        expect(response['|']).to be nil
+        expect(response['\n']).to be nil
       end
 
     end
