@@ -4,7 +4,7 @@ require 'net/http'
 
 require File.dirname(__FILE__) + '/grepwords_client/config'
 require File.dirname(__FILE__) + '/grepwords_client/exceptions'
-require File.dirname(__FILE__) + '/grepwords_client/keyword_tool'
+require File.dirname(__FILE__) + '/grepwords_client/endpoints'
 
 module GrepwordsClient
 
