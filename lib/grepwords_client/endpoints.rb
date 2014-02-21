@@ -22,7 +22,14 @@ module GrepwordsClient
       path  = '/lookup'
       query = "?apikey=#{config.apikey}&q=#{keywords_string}"
       uri   = URI.encode(config.host + path + query)
-      resp  = RestClient.get(uri, {})
+
+      begin
+        resp = RestClient.get(uri, {})
+      rescue => e
+        puts e
+        puts " --- FAILED URI: #{uri}"
+        return nil
+      end
 
       begin
         data = JSON.parse(resp.body)
