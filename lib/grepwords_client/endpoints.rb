@@ -18,6 +18,8 @@ module GrepwordsClient
     #     [ ]
 
     def self.lookup(keywords)
+      return nil unless keywords.is_a?(Array)
+
       keywords_string = self.encode_keywords(keywords)
       path  = '/lookup'
       query = "?apikey=#{config.apikey}&q=#{keywords_string}"
@@ -49,7 +51,7 @@ module GrepwordsClient
       end
 
       keywords.each do |keyword|
-        grepwords_by_keyword[keyword] = grepwords_data[keyword]
+        grepwords_by_keyword[CGI.unescape keyword] = grepwords_data[keyword]
       end
 
       grepwords_by_keyword
@@ -73,10 +75,9 @@ module GrepwordsClient
       # @param keywords  [Array[String], String] - Defaults to an empty array. Can be an array of keywords or a string of keywords seperated by a pipe symbol "|"
       # @return       [Array] of keyword keywords
 
-      def encode_keywords(keywords = [])
-        keywords = keywords.is_a?(Array) ? keywords.join('|') : keywords.to_s
-        keywords = CGI.escape keywords
-        keywords[0..3949]
+      def encode_keywords(phrases)
+        phrases.collect! { |keyword| CGI.escape(keyword.to_s) }
+        phrases.join('|')[0..3949]
       end
     end
 
