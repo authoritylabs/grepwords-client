@@ -3,28 +3,21 @@ require 'spec_helper'
 describe GrepwordsClient::Endpoints do
 
   let(:config)        { GrepwordsClient.config }
-  let(:keywords)      { ['apple', 'ipad'] }
-  let(:bad_keywords)  { ['|', '\n'] }
+  let(:keywords_good) { ['apple', 'ipad'] }
+  let(:keywords_bad)  { ['|', '\n'] }
 
   describe 'setup keywords' do
 
     it 'takes an array of keywords and makes newline separated string' do
-      keywords = GrepwordsClient::Endpoints.encode_keywords(['one','two','three'])
+      keywords = GrepwordsClient::Endpoints.encode_keywords(keywords_good)
       keywords.should be_an_instance_of(String)
-      keywords.should eql "one|two|three"
+      keywords.should eql 'apple|ipad'
     end
 
-    it 'takes a string of keywords and sets ivar' do
-      terms = "my fancy keyword\nwith another keyword"
-      keywords = GrepwordsClient::Endpoints.encode_keywords(terms)
+    it 'encodes keyword names correctly' do
+      keywords = GrepwordsClient::Endpoints.encode_keywords(['baseball+cards', 'football cards', 'http://google.com/?q=sports+cards&lang=eng'])
       keywords.should be_an_instance_of(String)
-      keywords.should eql keywords
-    end
-
-    it 'converts keyword spaces to a plus' do
-      keywords = GrepwordsClient::Endpoints.encode_keywords(['baseball cards', 'football cards', 'sports+cards'])
-      keywords.should be_an_instance_of(String)
-      keywords.should eql "baseball+cards|football+cards|sports+cards"
+      keywords.should eql 'baseball%2Bcards|football+cards|http%3A%2F%2Fgoogle.com%2F%3Fq%3Dsports%2Bcards%26lang%3Deng'
     end
 
     it 'sets max keyword length to 3950' do
@@ -42,7 +35,7 @@ describe GrepwordsClient::Endpoints do
 
     context 'valid keywords', vcr: { cassette_name: 'keyword_tool/lookup/successfully/valid', record: :none } do
 
-      subject(:response) { GrepwordsClient::Endpoints.lookup(keywords) }
+      subject(:response) { GrepwordsClient::Endpoints.lookup(keywords_good) }
 
       it { should be_an_instance_of Hash }
       it { should have_key 'apple' }
@@ -59,7 +52,7 @@ describe GrepwordsClient::Endpoints do
 
     context 'invalid keywords', vcr: { cassette_name: 'keyword_tool/lookup/unsuccessfully/with_error', record: :none } do
 
-      subject(:response) { GrepwordsClient::Endpoints.lookup(bad_keywords) }
+      subject(:response) { GrepwordsClient::Endpoints.lookup(keywords_bad) }
 
       it { should be_an_instance_of Hash }
       it { should have_key '|' }
