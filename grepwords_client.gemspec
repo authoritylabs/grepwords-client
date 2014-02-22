@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = 'grepwords_client'
-  s.version           = '0.0.5'
-  s.date              = '2014-02-21'
+  s.version           = '0.0.6'
+  s.date              = '2014-02-22'
   s.summary           = 'Grepwords API Wrapper'
   s.description       = 'Wraps Grepwords API calls in a gem'
   s.authors           = 'amokan'
