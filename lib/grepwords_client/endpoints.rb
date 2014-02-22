@@ -18,18 +18,16 @@ module GrepwordsClient
     #     [ ]
 
     def self.lookup(keywords)
-      return nil unless keywords.is_a?(Array)
+      return nil unless keywords.is_a?(Array) && keywords.size < 3950
 
-      keywords_string = self.encode_keywords(keywords)
-      path  = '/lookup'
-      query = "?apikey=#{config.apikey}&q=#{keywords_string}"
-      uri   = URI.encode(config.host + path + query)
+      query_string = self.escape_keywords(keywords)
+      url = self.encode_url('lookup', query_string)
 
       begin
-        resp = RestClient.get(uri, {})
+        resp = RestClient.get(url, {})
       rescue => e
         puts e
-        puts " --- FAILED URI: #{uri}"
+        puts " --- FAILED URI: #{url}"
         return nil
       end
 
@@ -68,16 +66,14 @@ module GrepwordsClient
         GrepwordsClient.config
       end
 
-      ##
-      #
-      # Setup keywords for API calls.
-      #
-      # @param keywords  [Array[String], String] - Defaults to an empty array. Can be an array of keywords or a string of keywords seperated by a pipe symbol "|"
-      # @return       [Array] of keyword keywords
+      def encode_url(endpoint, query_string)
+        query_string = "?apikey=#{config.apikey}&q=#{query_string}"
+        URI.encode(config.host + '/' + endpoint) + query_string
+      end
 
-      def encode_keywords(phrases)
-        phrases.collect! { |keyword| CGI.escape(keyword.to_s) }
-        phrases.join('|')[0..3949]
+      def escape_keywords(keywords)
+        keywords = keywords.join('|')
+        CGI.escape(keywords).to_s
       end
     end
 
