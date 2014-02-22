@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.grepwords.com/lookup?apikey=1234567890&q=%257C%7C%255Cn
+    uri: http://api.grepwords.com/lookup?apikey=1234567890&q=%7C%7C%5Cn
     body:
       encoding: US-ASCII
       string: ''
