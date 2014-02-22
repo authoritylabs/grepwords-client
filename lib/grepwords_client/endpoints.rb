@@ -75,7 +75,7 @@ module GrepwordsClient
 
       def encode_keywords(keywords = [])
         keywords = keywords.is_a?(Array) ? keywords.join('|') : keywords.to_s
-        keywords = keywords.gsub(/\s/,'+')
+        keywords = CGI.escape keywords
         keywords[0..3949]
       end
     end
