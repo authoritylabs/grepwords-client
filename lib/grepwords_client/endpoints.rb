@@ -67,13 +67,13 @@ module GrepwordsClient
       end
 
       def encode_url(endpoint, query_string)
-        query_string = "?apikey=#{config.apikey}&q=#{query_string}"
-        URI.encode(config.host + '/' + endpoint) + query_string
+        modified_query_string = "?apikey=#{config.apikey}&q=#{query_string}"
+        URI.encode(config.host + '/' + endpoint) + modified_query_string
       end
 
       def escape_keywords(keywords)
-        keywords = keywords.join('|')
-        CGI.escape(keywords).to_s
+        modified_keywords = keywords.join('|')
+        CGI.escape(modified_keywords).to_s
       end
     end
 
