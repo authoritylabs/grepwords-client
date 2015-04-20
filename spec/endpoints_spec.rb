@@ -20,6 +20,12 @@ describe GrepwordsClient::Endpoints do
       expect(url).to eq 'http://api.grepwords.com/lookup?apikey=&q=apple%7Cipad+air%7Chttp%3A%2F%2Fgoogle.com%2F%3Fq%3Dsports%2Bcards%26lang%3Den-us'
     end
 
+    it 'correctly encodes url with country code option' do
+      keywords = GrepwordsClient::Endpoints.escape_keywords(keywords_good)
+      url = GrepwordsClient::Endpoints.encode_url('lookup', keywords, 'canada')
+      expect(url).to eq 'http://api.grepwords.com/lookup?apikey=&q=apple%7Cipad+air%7Chttp%3A%2F%2Fgoogle.com%2F%3Fq%3Dsports%2Bcards%26lang%3Den-us&loc=canada'
+    end
+
   end
 
   describe 'lookup' do

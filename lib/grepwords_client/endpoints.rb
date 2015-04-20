@@ -66,8 +66,9 @@ module GrepwordsClient
         GrepwordsClient.config
       end
 
-      def encode_url(endpoint, query_string)
+      def encode_url(endpoint, query_string, locale=nil)
         modified_query_string = "?apikey=#{config.apikey}&q=#{query_string}"
+        modified_query_string += "&loc=#{locale}" unless locale.nil? || locale.empty?
         URI.encode(config.host + '/' + endpoint) + modified_query_string
       end
 
