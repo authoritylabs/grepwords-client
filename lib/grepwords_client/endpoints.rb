@@ -26,7 +26,7 @@ module GrepwordsClient
       begin
         resp = RestClient.get(url, {})
       rescue => e
-        puts e
+        puts e.message
         puts " --- FAILED URI: #{url}"
         return nil
       end
