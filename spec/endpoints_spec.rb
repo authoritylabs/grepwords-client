@@ -56,6 +56,23 @@ describe GrepwordsClient::Endpoints do
 
     end
 
+    context 'valid keywords with country option', vcr: { cassette_name: 'keyword_tool/lookup/successfully/valid_with_country', record: :none } do
+
+      subject { GrepwordsClient::Endpoints.lookup(keywords_good,'canada') }
+
+      it { expect be_an_instance_of Hash }
+      it { expect have_key 'apple' }
+      it { expect have_key 'ipad air' }
+
+      it 'returns correct properties' do
+        %w(cpc cmp gms lms m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12).each do |property|
+          expect(subject['apple']).to have_key property
+          expect(subject['ipad air']).to have_key property
+        end
+      end
+
+    end
+
     context 'invalid keywords', vcr: { cassette_name: 'keyword_tool/lookup/unsuccessfully/with_error', record: :none } do
 
       subject(:response) { GrepwordsClient::Endpoints.lookup(keywords_bad) }

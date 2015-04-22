@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.grepwords.com/lookup?apikey=1234567890&q=%7C%7C%5Cn
+    uri: http://api.grepwords.com/lookup?apikey=123456789&q=%7C%7C%5Cn
     body:
       encoding: US-ASCII
       string: ''
@@ -21,14 +21,14 @@ http_interactions:
       X-Powered-By:
       - Express
       Date:
-      - Fri, 03 Jan 2014 16:37:47 GMT
+      - Mon, 20 Apr 2015 20:56:03 GMT
       Connection:
       - keep-alive
       Transfer-Encoding:
       - chunked
     body:
       encoding: US-ASCII
-      string: error contact support! ]
+      string: ! '[{"error":"no coverage for this term"}]'
     http_version: 
-  recorded_at: Fri, 03 Jan 2014 16:37:47 GMT
+  recorded_at: Mon, 20 Apr 2015 20:56:08 GMT
 recorded_with: VCR 2.8.0

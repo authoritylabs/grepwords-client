@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name              = 'grepwords_client'
-  s.version           = '0.0.7'
-  s.date              = '2014-02-22'
+  s.version           = '0.0.8'
+  s.date              = '2015-04-22'
   s.summary           = 'Grepwords API Wrapper'
   s.description       = 'Wraps Grepwords API calls in a gem'
-  s.authors           = 'amokan'
-  s.email             = 'adam.mokan@authoritylabs.com'
+  s.authors           = 'refriedchicken'
+  s.email             = 'mike.benner@authoritylabs.com'
   s.files             = Dir.glob("{bin,lib}/**/*") + %w[README.md]
   s.require_paths     = ['lib']
   s.homepage          = ''

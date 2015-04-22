@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri:  http://api.grepwords.com/lookup?apikey=1234567890&q=apple%7Cipad%20air%7Chttp://google.com/?q=sports%2Bcards%26lang=en-us
+    uri: http://api.grepwords.com/lookup?apikey=123456789&q=apple%7Cipad%20air%7Chttp://google.com/?q=sports%2Bcards%26lang=en-us
     body:
       encoding: US-ASCII
       string: ''
@@ -21,16 +21,17 @@ http_interactions:
       X-Powered-By:
       - Express
       Date:
-      - Tue, 31 Dec 2013 20:46:47 GMT
+      - Mon, 20 Apr 2015 20:55:49 GMT
       Connection:
       - keep-alive
       Transfer-Encoding:
       - chunked
     body:
       encoding: US-ASCII
-      string: ! '[{"cpc":2.4,"cmp":0.05,"gms":4090000,"lms":4090000,"m1":5000000,"m2":4090000,"m3":3350000,"m4":3350000,"m5":2740000,"m6":2740000,"m7":4090000,"m8":3350000,"m9":3350000,"m10":7480000,"m11":4090000,"m12":0,"keyword":"apple"},
+      string: ! '[{"cmp":0,"ams":0,"cpc":0,"m1":0,"m2":0,"m3":0,"m4":0,"m5":0,"m6":0,"m7":0,"m8":0,"m9":0,"m10":0,"m11":0,"m12":0,"lms":0,"gms":0,"keyword":"apple"},
 
-        {"cpc":1.57,"cmp":0.94,"gms":1000000,"lms":1000000,"m1":1830000,"m2":1000000,"m3":1000000,"m4":1000000,"m5":1000000,"m6":823000,"m7":673000,"m8":673000,"m9":823000,"m10":823000,"m11":1000000,"m12":0,"keyword":"ipad air"}]'
-    http_version:
-  recorded_at: Tue, 31 Dec 2013 20:46:48 GMT
+        {"cmp":0.96,"ams":368000,"cpc":1.62,"m1":368000,"m2":368000,"m3":368000,"m4":301000,"m5":368000,"m6":368000,"m7":368000,"m8":550000,"m9":550000,"m10":246000,"m11":201000,"m12":0,"lms":368000,"gms":368000,"keyword":"ipad
+        air"}]'
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 20:55:54 GMT
 recorded_with: VCR 2.8.0

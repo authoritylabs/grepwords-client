@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.grepwords.com/lookup?apikey=123456789&loc=canada&q=apple%7Cipad%20air%7Chttp://google.com/?q=sports%2Bcards%26lang=en-us
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - PHP/5.6.5
+      Date:
+      - Mon, 20 Apr 2015 20:56:03 GMT
+      Server:
+      - Apache/2.2.15 (CentOS)
+      Content-Length:
+      - '456'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: ! '[{"cpc":"0.20","keyword":"apple","lms":"450000","cmp":"0.01","m1":"368000","m2":"368000","m3":"368000","m4":"301000","m5":"368000","m6":"368000","m7":"368000","m8":"1220000","m9":"550000","m10":"450000","m11":"450000","m12":"368000"},{"cpc":"0.98","keyword":"ipad
+        air","lms":"40500","cmp":"0.97","m1":"49500","m2":"49500","m3":"40500","m4":"33100","m5":"40500","m6":"33100","m7":"40500","m8":"40500","m9":"49500","m10":"49500","m11":"49500","m12":"27100"}]'
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 20:56:07 GMT
+recorded_with: VCR 2.8.0

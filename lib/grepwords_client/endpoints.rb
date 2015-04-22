@@ -17,11 +17,11 @@ module GrepwordsClient
     # @example Example Response
     #     [ ]
 
-    def self.lookup(keywords)
+    def self.lookup(keywords,locale=nil)
       return nil unless keywords.is_a?(Array) && keywords.size < 3950
 
       query_string = self.escape_keywords(keywords)
-      url = self.encode_url('lookup', query_string)
+      url = self.encode_url('lookup', query_string, locale)
 
       begin
         resp = RestClient.get(url, {})
@@ -49,6 +49,7 @@ module GrepwordsClient
       end
 
       keywords.each do |keyword|
+        grepwords_data[keyword]["gms"] = "0" if !grepwords_data[keyword].nil? && grepwords_data[keyword]["gms"].nil?
         grepwords_by_keyword[CGI.unescape keyword] = grepwords_data[keyword]
       end
 
