@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rest-client'
+gem 'rest-client', '~> 1.7.3'
 gem 'rspec'
-gem 'yard'
+gem 'yard', '~> 0.9.11'
 gem 'gemcutter'
 gem 'pry'
 gem 'pry-doc'

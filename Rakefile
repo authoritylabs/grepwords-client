@@ -12,7 +12,7 @@ end
 
 task :default => 'spec'
 
-YARD::Rake::YarddocTask.new(:doc) do |t|
+YARD::Rake::YardocTask.new(:doc) do |t|
   t.files     = ['lib/**/*.rb', '-', 'README.md']
   t.options   = ['no-private']
 end
